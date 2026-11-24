@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roberto Fani</title>
+<meta name="description" content="Roberto Fani — economics, labor markets and job search. Bocconi University.">
+<meta name="author" content="Roberto Fani">
+<meta property="og:title" content="Roberto Fani">
+<meta property="og:description" content="Economics research: labor markets, job search, local labor markets.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://robertofani.github.io/">
+<link rel="canonical" href="https://robertofani.github.io/">
+<style>
+  /* Light is the default; dark only when the visitor clicks the toggle */
+  :root {
+    --bg: #ffffff;
+    --text: #1f1f22;
+    --muted: #6b6b70;
+    --border: #e6e6e9;
+    --blue: #1c5aa8;
+    --blue-hover: #0f3f7d;
+    --blue-soft: rgba(28, 90, 168, .25);
+    --summary: #3a3a40;
+  }
+  :root[data-theme="dark"] {
+    --bg: #1d1e20;
+    --text: #dadadb;
+    --muted: #9b9c9d;
+    --border: #333438;
+    --blue: #7fb0ec;
+    --blue-hover: #a9c9f3;
+    --blue-soft: rgba(127, 176, 236, .3);
+    --summary: #c9c9cb;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    transition: background .2s, color .2s;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { color: var(--blue-hover); text-decoration: underline; text-underline-offset: 3px; }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+  /* top bar: just the theme toggle */
+  header.bar .wrap { display: flex; justify-content: flex-end; align-items: center; height: 56px; }
+  .theme-toggle {
+    background: none; border: 0; padding: 6px; cursor: pointer; color: var(--muted);
+    display: inline-flex; border-radius: 6px;
+  }
+  .theme-toggle:hover { background: var(--border); color: var(--text); }
+  .theme-toggle svg { width: 20px; height: 20px; }
+  .icon-sun { display: none; }
+  :root[data-theme="dark"] .icon-sun { display: block; }
+  :root[data-theme="dark"] .icon-moon { display: none; }
+
+  /* two columns */
+  .layout {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 64px;
+    align-items: start;
+    padding-top: 8px;
+  }
+
+  /* left column */
+  .sidebar { position: sticky; top: 32px; }
+  .photo {
+    width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+    display: block; margin: 0 0 20px;
+  }
+  .photo-placeholder {
+    width: 180px; height: 180px; border-radius: 50%; margin: 0 0 20px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--border); color: var(--muted); font-size: 48px; font-weight: 600; letter-spacing: 1px;
+  }
+  .sidebar h1 { font-size: 32px; line-height: 1.2; margin: 0 0 8px; font-weight: 700; }
+  .sidebar .subtitle { color: var(--muted); margin: 0 0 20px; font-size: 16px; line-height: 1.45; }
+  .contact { list-style: none; padding: 0; margin: 0; font-size: 16px; }
+  .contact li { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; }
+  .contact svg { width: 17px; height: 17px; flex: none; color: var(--muted); }
+  .contact a { word-break: break-all; }
+
+  /* right column */
+  .content > section:first-child p:first-child { margin-top: 0; }
+  .intro p { margin: 0 0 18px; }
+
+  h2 {
+    font-size: 26px; line-height: 1.25; margin: 44px 0 18px; font-weight: 700;
+    padding-bottom: 6px; border-bottom: 2px solid var(--blue-soft);
+  }
+
+  .paper { margin: 0 0 28px; }
+  .paper-title { font-weight: 600; margin: 0; color: var(--blue); }
+  .paper-meta { margin: 2px 0 0; color: var(--muted); }
+  .paper-links { margin: 4px 0 0; font-size: 16px; }
+  .paper-links .sep { color: var(--muted); margin: 0 6px; }
+  details { margin-top: 6px; }
+  details summary {
+    cursor: pointer; font-weight: 600; font-size: 16px; color: var(--blue);
+    list-style: none; display: inline-flex; align-items: center; gap: 7px; user-select: none;
+  }
+  details summary:hover { color: var(--blue-hover); }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: ""; width: 0; height: 0;
+    border-left: 6px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+    transition: transform .15s;
+  }
+  details[open] summary::before { transform: rotate(90deg); }
+  details p {
+    margin: 10px 0 0; padding-left: 14px; border-left: 2px solid var(--blue-soft);
+    color: var(--summary); font-size: 17px; text-align: justify; hyphens: auto;
+  }
+
+  .placeholder { background: #fff3c4; color: #5a4a00; padding: 0 4px; border-radius: 3px; }
+  :root[data-theme="dark"] .placeholder { background: #4a3f12; color: #f5e6a8; }
+
+  footer { margin: 72px 0 32px; color: var(--muted); font-size: 14px; text-align: center; }
+
+  /* phones and narrow windows: one column, everything left-aligned,
+     photo beside the name to save vertical space */
+  @media (max-width: 820px) {
+    header.bar .wrap { height: 44px; }
+    .layout { grid-template-columns: 1fr; gap: 24px; padding-top: 0; }
+    .sidebar {
+      position: static;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 18px;
+      align-items: center;
+    }
+    .photo, .photo-placeholder { width: 96px; height: 96px; margin: 0; font-size: 30px; }
+    .sidebar h1 { font-size: 26px; margin-bottom: 4px; }
+    .sidebar .subtitle { margin: 0; font-size: 15px; }
+    .contact {
+      grid-column: 1 / -1;
+      display: flex; flex-wrap: wrap; gap: 6px 20px;
+      margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border);
+    }
+    .contact li { margin: 0; }
+    h2 { margin-top: 36px; }
+  }
+  @media (max-width: 520px) {
+    body { font-size: 17px; line-height: 1.55; }
+    h2 { font-size: 22px; }
+    details p { text-align: left; padding-left: 12px; }
+    .contact a { word-break: normal; }
+    footer { margin-top: 56px; }
+  }
+</style>
+<script>
+  // Restore the visitor's choice if they toggled dark mode before (per-viewer convenience only)
+  (function () {
+    try {
+      if (localStorage.getItem("theme") === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="wrap layout">
+
+  <aside class="sidebar">
+    <img class="photo" src="photo.jpg" alt="Roberto Fani">
+    <div class="ident">
+      <h1>Roberto Fani</h1>
+      <p class="subtitle">Pre-doctoral Research Fellow<br>Bocconi University and Harvard&nbsp;University</p>
+    </div>
+    <ul class="contact">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+        <a href="mailto:roberto.fani@unibocconi.it">roberto.fani@unibocconi.it</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>
+        <a href="CV_Fani.pdf">CV</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <a href="https://www.linkedin.com/in/roberto-fani" target="_blank" rel="noopener">LinkedIn</a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="content">
+
+    <section class="intro">
+      <p>Ciao!</p>
+      <p>I am a pre-doctoral research fellow at Bocconi University and at the Social Economics Lab at Harvard. I hold an MSc in Economic and Social Sciences from Bocconi.</p>
+      <p>I work mainly on labor and public economics, using administrative and survey data.</p>
+    </section>
+
+    <section>
+      <h2>Work in Progress</h2>
+      <div class="paper">
+        <p class="paper-title">Labor Market Size and the Scope of Job Search</p>
+        <p class="paper-links">
+          <a href="Fani_LaborMarketSize.pdf">PDF</a><span class="sep">|</span><a href="Fani_LaborMarketSize_Appendix.pdf">Online Appendix</a>
+        </p>
+        <details>
+          <summary>Abstract</summary>
+          <p>We study how local labor market size affects the cost of job displacement and the scope of job search. Using French matched employer–employee data and a matched difference-in-differences design, we estimate the causal effects of establishment closures and compare displacement losses across occupational markets within commuting zones. Workers displaced in larger markets experience smaller employment and earnings losses and return to occupations closer to those they left. A 10th-to-90th percentile difference in market size is associated with annual earnings losses smaller by 13 percentage points of pre-displacement earnings. Administrative job search records reveal a corresponding pattern in intended search: jobseekers in larger markets target occupations closer to their previous occupation and declare higher reservation wages. We develop a semi-directed search model in which workers choose search breadth, trading off access to vacancies against match quality. Larger markets relax this tradeoff, allowing more selective search alongside faster re-employment. In this environment, we show that equilibrium search is inefficiently broad even when the standard DMP efficiency condition holds.</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <h2>Teaching</h2>
+      <div class="paper">
+        <p class="paper-title"><a target="_blank" rel="noopener" href="https://didattica.unibocconi.eu/ts/tsn_anteprima.php?cod_ins=30147&amp;anno=2027&amp;IdPag=8227">The Economics of Imperfect Labour Markets</a></p>
+        <p class="paper-meta">Teaching Assistant, Bocconi University, 2026–27</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Service</h2>
+      <div class="paper">
+        <p class="paper-title"><a href="https://bej.egeaonline.it/" target="_blank" rel="noopener">Bocconi Economic Journal</a></p>
+        <p class="paper-meta">Founding Editor, 2024–present</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">© 2026 Roberto Fani</div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    document.getElementById("themeToggle").addEventListener("click", function () {
+      var dark = root.getAttribute("data-theme") === "dark";
+      if (dark) root.removeAttribute("data-theme"); else root.setAttribute("data-theme", "dark");
+      try { localStorage.setItem("theme", dark ? "light" : "dark"); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
